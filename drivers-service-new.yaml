@@ -1,0 +1,611 @@
+DomainName: CargoDeliveryService
+BoundedContexts:
+  - ProjectName: DriversManagement
+    Port: 5001
+    DbContext:
+      ContextName: DriversManagementContext
+      DatabaseName: DriversManagement
+      Provider: SqlServer
+    Entities:
+      - Name: Driver
+        Features:
+          - Type: GetList
+            IsProtected: true
+            PermissionName: CanReadDrivers
+          - Type: GetAll
+            IsProtected: true
+            PermissionName: CanReadDrivers
+          - Type: GetRecord
+            IsProtected: true
+            PermissionName: CanReadDriver
+          - Type: AddRecord
+            IsProtected: true
+            PermissionName: CanAddDriver
+          - Type: UpdateRecord
+            IsProtected: true
+            PermissionName: CanUpdateDriver
+          - Type: DeleteRecord
+            IsProtected: true
+            PermissionName: CanDeleteDrivers
+        Properties:
+          - Name: FirstName
+          - Name: LastName
+          - Name: MiddleName
+          - Name: Gender
+          - Name: Birthdate
+          - Name: PlaceOfBirth
+          - Name: Nationality
+          - Name: MaritalStatus
+          - Name: IdentificationType
+          - Name: IdentificationNumber
+          - Name: IdentificationExpirationDate
+          - Name: Address
+          - Name: Phone
+          - Name: Email
+          - Name: DriverLicenseNumber
+          - Name: DriverLicenseCategory
+          - Name: DriverLicenseIssuingDate
+          - Name: DriverLicenseExpirationDate
+          - Name: DriverLicenseIssuingAuthority
+          - Name: EmploymentStatus
+          - Name: EmploymentStartDate
+          - Name: EmploymentEndDate
+          - Name: Photo
+            Relationship: 1to1
+            ForeignEntityName: Photo
+            ForeignEntityPlural: Photos
+          - Name: Company
+            Relationship: 1to1
+            ForeignEntityName: Company
+            ForeignEntityPlural: Companies
+      - Name: Company
+        Features:
+          - Type: GetList
+            IsProtected: true
+            PermissionName: CanReadCompanies
+          - Type: GetAll
+            IsProtected: true
+            PermissionName: CanReadCompanies
+          - Type: GetRecord
+            IsProtected: true
+            PermissionName: CanReadCompany
+          - Type: AddRecord
+            IsProtected: true
+            PermissionName: CanAddCompany
+          - Type: UpdateRecord
+            IsProtected: true
+            PermissionName: CanUpdateCompany
+          - Type: DeleteRecord
+            IsProtected: true
+            PermissionName: CanDeleteCompany
+        Properties:
+          - Name: CompanyName
+          - Name: Address
+          - Name: Phone
+          - Name: Email
+          - Name: ContactEmail
+          - Name: ContactPerson
+          - Name: ContactPhone
+      - Name: Photo
+        Features:
+          - Type: GetList
+            IsProtected: true
+            PermissionName: CanReadPhotos
+          - Type: GetAll
+            IsProtected: true
+            PermissionName: CanReadPhotos
+          - Type: GetRecord
+            IsProtected: true
+            PermissionName: CanReadPhoto
+          - Type: AddRecord
+            IsProtected: true
+            PermissionName: CanAddPhoto
+          - Type: UpdateRecord
+            IsProtected: true
+            PermissionName: CanUpdatePhoto
+          - Type: DeleteRecord
+            IsProtected: true
+            PermissionName: CanDeletePhoto
+        Properties:
+          - Name: PhotoData
+          - Name: ContentType
+          - Name: FileName
+          - Name: FileSizels
+      - Name: Repair
+        Features:
+          - Type: GetList
+            IsProtected: true
+            PermissionName: CanReadRepairs
+          - Type: GetAll
+            IsProtected: true
+            PermissionName: CanReadRepairs
+          - Type: GetRecord
+            IsProtected: true
+            PermissionName: CanReadRepair
+          - Type: AddRecord
+            IsProtected: true
+            PermissionName: CanAddRepair
+          - Type: UpdateRecord
+            IsProtected: true
+            PermissionName: CanUpdateRepair
+          - Type: DeleteRecord
+            IsProtected: true
+            PermissionName: CanDeleteRepair
+        Properties:
+          - Name: RepairDate
+          - Name: Description
+          - Name: Cost
+          - Name: Truck
+            Relationship: manyto1
+            ForeignEntityName: Truck
+            ForeignEntityPlural: Trucks
+      - Name: Inspection
+        Features:
+          - Type: GetList
+            IsProtected: true
+            PermissionName: CanReadInspections
+          - Type: GetAll
+            IsProtected: true
+            PermissionName: CanReadInspections
+          - Type: GetRecord
+            IsProtected: true
+            PermissionName: CanReadInspection
+          - Type: AddRecord
+            IsProtected: true
+            PermissionName: CanAddInspection
+          - Type: UpdateRecord
+            IsProtected: true
+            PermissionName: CanUpdateInspection
+          - Type: DeleteRecord
+            IsProtected: true
+            PermissionName: CanDeleteInspection
+        Properties:
+          - Name: InspectionDate
+          - Name: Description
+          - Name: Result 
+          - Name: Truck
+            Relationship: manyto1
+            ForeignEntityName: Truck
+            ForeignEntityPlural: Trucks
+      - Name: Truck
+        Features:
+          - Type: GetList
+            IsProtected: true
+            PermissionName: CanReadTrucks
+          - Type: GetAll
+            IsProtected: true
+            PermissionName: CanReadTrucks
+          - Type: GetRecord
+            IsProtected: true
+            PermissionName: CanReadTruck
+          - Type: AddRecord
+            IsProtected: true
+            PermissionName: CanAddTruck
+          - Type: UpdateRecord
+            IsProtected: true
+            PermissionName: CanUpdateTruck
+          - Type: DeleteRecord
+            IsProtected: true
+            PermissionName: CanDeleteTruck
+        Properties:
+          - Name: TruckNumber
+          - Name: Model
+          - Name: Year
+          - Name: Capacity
+          - Name: FuelType
+          - Name: RegistrationNumber
+          - Name: VIN
+          - Name: EngineNumber
+          - Name: InsurancePolicyNumber
+          - Name: InsuranceInspirationDate
+      - Name: Expence
+        Features:
+          - Type: GetList
+            IsProtected: true
+            PermissionName: CanReadExpences
+          - Type: GetAll
+            IsProtected: true
+            PermissionName: CanReadExpences
+          - Type: GetRecord
+            IsProtected: true
+            PermissionName: CanReadExpence
+          - Type: AddRecord
+            IsProtected: true
+            PermissionName: CanAddExpence
+          - Type: UpdateRecord
+            IsProtected: true
+            PermissionName: CanUpdateExpence
+          - Type: DeleteRecord
+            IsProtected: true
+            PermissionName: CanDeleteExpence
+        Properties:
+          - Name: DriverPaiment
+          - Name: FuelCost
+          - Name: MaintanceCost
+          - Name: Category
+          - Name: Date
+          - Name: Note
+          - Name: Driver
+            Relationship: manyto1
+            ForeignEntityName: Driver
+            ForeignEntityPlural: Drivers
+          - Name: Truck
+            Relationship: manyto1
+            ForeignEntityName: Truck
+            ForeignEntityPlural: Trucks
+    Environment:
+      AuthSettings:
+        Authority: http://localhost:5000/auth/realms/DevRealmDrivers
+        Audience: drivers_management
+        AuthorizationUrl: http://localhost:5000/auth/realms/DevRealmDrivers/protocol/openid-connect/auth
+        TokenUrl: http://localhost:5000/auth/realms/DevRealmDrivers/protocol/openid-connect/token
+        ClientId: drivers_management.swagger
+        ClientSecret: 974d6f71-d41b-4601-9a7a-a33081f80687
+  - ProjectName: DriversBlogManagement
+    Port: 5002
+    DbContext:
+      ContextName: BlogManagementContext
+      DatabaseName: BlogManagement
+      Provider: SqlServer
+    Entities:
+      - Name: Like
+        Features:
+          - Type: GetList
+            IsProtected: true
+            PermissionName: CanReadLikes
+          - Type: GetAll
+            IsProtected: true
+            PermissionName: CanReadLikes
+          - Type: GetRecord
+            IsProtected: true
+            PermissionName: CanReadLike
+          - Type: AddRecord
+            IsProtected: true
+            PermissionName: CanAddLike
+          - Type: UpdateRecord
+            IsProtected: true
+            PermissionName: CanUpdateLike
+          - Type: DeleteRecord
+            IsProtected: true
+            PermissionName: CanDeleteLike
+        Properties:
+          - Name: Info
+          - Name: Driver
+            Relationship: manyto1
+            ForeignEntityName: Driver
+            ForeignEntityPlural: Drivers
+          - Name: PostAboutDriver
+            Relationship: manyto1
+            ForeignEntityName: PostAboutDriver
+            ForeignEntityPlural: PostAboutDrivers
+      - Name: Driver
+        Features:
+          - Type: GetList
+            IsProtected: true
+            PermissionName: CanReadDrivers
+          - Type: GetAll
+            IsProtected: true
+            PermissionName: CanReadDrivers
+          - Type: GetRecord
+            IsProtected: true
+            PermissionName: CanReadDriver
+          - Type: AddRecord
+            IsProtected: true
+            PermissionName: CanAddDriver
+          - Type: UpdateRecord
+            IsProtected: true
+            PermissionName: CanUpdateDriver
+          - Type: DeleteRecord
+            IsProtected: true
+            PermissionName: CanDeleteDriver
+        Properties:
+          - Name: FirstName
+          - Name: LastName
+          - Name: PostAboutDriver
+            Relationship: 1to1
+            ForeignEntityName: PostAboutDriver
+            ForeignEntityPlural: PostAboutDrivers
+      - Name: PostAboutDriver
+        Features:
+          - Type: GetList
+            IsProtected: true
+            PermissionName: CanReadPostAboutDrivers
+          - Type: GetAll
+            IsProtected: true
+            PermissionName: CanReadPostAboutDrivers
+          - Type: GetRecord
+            IsProtected: true
+            PermissionName: CanReadPostAboutDriver
+          - Type: AddRecord
+            IsProtected: true
+            PermissionName: CanAddPostAboutDriver
+          - Type: UpdateRecord
+            IsProtected: true
+            PermissionName: CanUpdatePostAboutDriver
+          - Type: DeleteRecord
+            IsProtected: true
+            PermissionName: CanDeletePostAboutDriver
+        Properties:
+          - Name: Title
+          - Name: Content
+      - Name: Comment
+        Features:
+          - Type: GetList
+            IsProtected: true
+            PermissionName: CanReadComments
+          - Type: GetAll
+            IsProtected: true
+            PermissionName: CanReadComments
+          - Type: GetRecord
+            IsProtected: true
+            PermissionName: CanReadComment
+          - Type: AddRecord
+            IsProtected: true
+            PermissionName: CanAddComment
+          - Type: UpdateRecord
+            IsProtected: true
+            PermissionName: CanUpdateComment
+          - Type: DeleteRecord
+            IsProtected: true
+            PermissionName: CanDeleteComment
+        Properties:
+          - Name: Text
+          - Name: PostAboutDriver
+            Relationship: manyto1
+            ForeignEntityName: PostAboutDriver
+            ForeignEntityPlural: PostAboutDrivers
+          - Name: User
+            Relationship: manyto1
+            ForeignEntityName: User
+            ForeignEntityPlural: Users
+      - Name: BlogUser
+        Features:
+          - Type: GetList
+            IsProtected: true
+            PermissionName: CanReadUsers
+          - Type: GetAll
+            IsProtected: true
+            PermissionName: CanReadUsers
+          - Type: GetRecord
+            IsProtected: true
+            PermissionName: CanReadUser
+          - Type: AddRecord
+            IsProtected: true
+            PermissionName: CanAddUser
+          - Type: UpdateRecord
+            IsProtected: true
+            PermissionName: CanUpdateUser
+          - Type: DeleteRecord
+            IsProtected: true
+            PermissionName: CanDeleteUser
+        Properties:
+          - Name: UserName
+          - Name: Email
+          - Name: PostAboutDriver
+            Relationship: 1to1
+            ForeignEntityName: PostAboutDriver
+            ForeignEntityPlural: PostAboutDrivers
+    Environment:
+      AuthSettings:
+        Authority: http://localhost:5000/auth/realms/DevRealmBlog
+        Audience: blog_management
+        AuthorizationUrl: http://localhost:5000/auth/realms/DevRealmDrivers/protocol/openid-connect/auth
+        TokenUrl: http://localhost:5000/auth/realms/DevRealmDrivers/protocol/openid-connect/token
+        ClientId: blog_management.swagger
+        ClientSecret: 81053a06-52b5-4f88-a885-43fbb487c1a4
+  - ProjectName: CargoOrderingService
+    Port: 5003
+    DbContext:
+      ContextName: OrderingContext
+      DatabaseName: Ordering
+      Provider: SqlServer
+    Entities:
+      - Name: Order
+        Features:
+          - Type: GetList
+            IsProtected: true
+            PermissionName: CanReadOrders
+          - Type: GetAll
+            IsProtected: true
+            PermissionName: CanReadOrders
+          - Type: GetRecord
+            IsProtected: true
+            PermissionName: CanReadOrder
+          - Type: AddRecord
+            IsProtected: true
+            PermissionName: CanAddOrder
+          - Type: UpdateRecord
+            IsProtected: true
+            PermissionName: CanUpdateOrder
+          - Type: DeleteRecord
+            IsProtected: true
+            PermissionName: CanDeleteOrder
+        Properties:
+          - Name: OrderNumber
+          - Name: CustomerName
+          - Name: DeliveryDate
+          - Name: TotalAmount
+          - Name: Status
+          - Name: Driver
+            Relationship: manyto1
+            ForeignEntityName: Driver
+            ForeignEntityPlural: Drivers
+          - Name: Delivery
+            Relationship: 1to1
+            ForeignEntityName: Delivery
+            ForeignEntityPlural: Deliveries
+      - Name: Delivery
+        Features:
+          - Type: GetList
+            IsProtected: true
+            PermissionName: CanReadDeliveries
+          - Type: GetAll
+            IsProtected: true
+            PermissionName: CanReadDeliveries
+          - Type: GetRecord
+            IsProtected: true
+            PermissionName: CanReadDelivery
+          - Type: AddRecord
+            IsProtected: true
+            PermissionName: CanAddDelivery
+          - Type: UpdateRecord
+            IsProtected: true
+            PermissionName: CanUpdateDelivery
+          - Type: DeleteRecord
+            IsProtected: true
+            PermissionName: CanDeleteDelivery
+        Properties:
+          - Name: DeliveryDate
+          - Name: PickupAddress
+          - Name: DestinationAddress
+          - Name: PackageDetails
+          - Name: DeliveryStatus
+          - Name: Driver
+            Relationship: manyto1
+            ForeignEntityName: Driver
+            ForeignEntityPlural: Drivers
+      - Name: Driver
+        Features:
+          - Type: GetList
+            IsProtected: true
+            PermissionName: CanReadDrivers
+          - Type: GetAll
+            IsProtected: true
+            PermissionName: CanReadDrivers
+          - Type: GetRecord
+            IsProtected: true
+            PermissionName: CanReadDriver
+          - Type: AddRecord
+            IsProtected: true
+            PermissionName: CanAddDriver
+          - Type: UpdateRecord
+            IsProtected: true
+            PermissionName: CanUpdateDriver
+          - Type: DeleteRecord
+            IsProtected: true
+            PermissionName: CanDeleteDriver
+        Properties:
+          - Name: DriverName
+          - Name: LicenseNumber
+          - Name: PhoneNumber
+          - Name: Email
+          - Name: Orders
+            Relationship: 1tomany
+            ForeignEntityName: Order
+            ForeignEntityPlural: Orders
+          - Name: Deliveries
+            Relationship: 1tomany
+            ForeignEntityName: Delivery
+            ForeignEntityPlural: Deliveries
+    Environment:
+      AuthSettings:
+        Authority: http://localhost:5000/auth/realms/DevRealmOrdering
+        Audience: ordering_management
+        AuthorizationUrl: http://localhost:5000/auth/realms/DevRealmOrdering/protocol/openid-connect/auth
+        TokenUrl: http://localhost:5000/auth/realms/DevRealmOrdering/protocol/openid-connect/token
+        ClientId: ordering_management.swagger
+        ClientSecret: 9e685118-b0f3-4500-8e05-8465b1e2ebb0
+AuthServer:
+  Name: KeycloakPulumiAuth
+  RealmName: DevRealmDrivers
+  Port: 5000
+  Clients:
+    - Id: drivers_management.postman.machine
+      Name: DriversManagement Postman Machine
+      Secret: 974d6f71-d41b-4601-9a7a-a33081f84682
+      GrantType: ClientCredentials
+      BaseUrl: "https://oauth.pstmn.io/"
+      Scopes:
+        - drivers_management #this should match the audience scope in your boundary auth settings and swagger specs
+    - Id: drivers_management.postman.code
+      Name: DriversManagement Postman Code
+      Secret: 974d6f71-d41b-4601-9a7a-a33081f84680 #optional
+      GrantType: Code
+      BaseUrl: "https://oauth.pstmn.io/"
+      Scopes:
+        - drivers_management #this should match the audience scope in your boundary auth settings and swagger specs
+    - Id: drivers_management.swagger
+      Name: DriversManagement Swagger
+      Secret: 974d6f71-d41b-4601-9a7a-a33081f80687
+      GrantType: Code
+      BaseUrl: "https://localhost:5001/"
+      Scopes:
+        - drivers_management #this should match the audience scope in your boundary auth settings and swagger specs
+    - Id: drivers_management.bff
+      Name: DriversManagement BFF
+      Secret: 974d6f71-d41b-4601-9a7a-a33081f80688
+      BaseUrl: "https://localhost:4000/"
+      GrantType: Code
+      RedirectUris:
+        - "https://localhost:4000/signin-oidc"
+      AllowedCorsOrigins:
+        - "https://localhost:5301" # api 1 - drivers_management
+        - "https://localhost:4000"
+      Scopes:
+        - drivers_management #this should match the audience scope in your boundary auth settings and swagger specs
+    - Id: blog_management.postman.machine
+      Name: BlogManagement Postman Machine
+      Secret: 56a32679-2c51-409b-9c4c-618274a06993
+      GrantType: ClientCredentials
+      BaseUrl: "https://oauth.pstmn.io/"
+      Scopes:
+        - blog_management #this should match the audience scope in your boundary auth settings and swagger specs
+    - Id: blog_management.postman.code
+      Name: BlogManagement Postman Code
+      Secret: 13b4ad5c-d172-4aab-8822-baa0cf96a9fb
+      GrantType: Code
+      BaseUrl: "https://oauth.pstmn.io/"
+      Scopes:
+        - blog_management #this should match the audience scope in your boundary auth settings and swagger specs
+    - Id: blog_management.swagger
+      Name: BlogManagement Swagger
+      Secret: 81053a06-52b5-4f88-a885-43fbb487c1a4
+      GrantType: Code
+      BaseUrl: "https://localhost:5002/"
+      Scopes:
+        - blog_management #this should match the audience scope in your boundary auth settings and swagger specs
+    - Id: blog_management.bff
+      Name: BlogManagement BFF
+      Secret: 48179ca7-36c7-4e9a-b1c4-4fb4ab092eaf
+      BaseUrl: "https://localhost:4000/"
+      GrantType: Code
+      RedirectUris:
+        - "https://localhost:4000/signin-oidc"
+      AllowedCorsOrigins:
+        - "https://localhost:5302" # api 2 - blog_management
+        - "https://localhost:4000"
+      Scopes:
+        - blog_management #this should match the audience scope in your boundary auth settings and swagger specs
+    - Id: ordering_management.postman.machine
+      Name: OrderingManagement Postman Machine
+      Secret: e11f8411-d118-4c21-9cd0-84d2a49aa0d0
+      GrantType: ClientCredentials
+      BaseUrl: "https://oauth.pstmn.io/"
+      Scopes:
+        - ordering_management #this should match the audience scope in your boundary auth settings and swagger specs
+    - Id: ordering_management.postman.code
+      Name: OrderingManagement Postman Code
+      Secret: da47d639-8afa-47f7-93a8-35c82fa70f37 #optional
+      GrantType: Code
+      BaseUrl: "https://oauth.pstmn.io/"
+      Scopes:
+        - ordering_management #this should match the audience scope in your boundary auth settings and swagger specs
+    - Id: ordering_management.swagger
+      Name: OrderingManagement Swagger
+      Secret: 9e685118-b0f3-4500-8e05-8465b1e2ebb0
+      GrantType: Code
+      BaseUrl: "https://localhost:5003/"
+      Scopes:
+        - ordering_management #this should match the audience scope in your boundary auth settings and swagger specs
+    - Id: ordering_management.bff
+      Name: OrderingManagement BFF
+      Secret: 478655d9-9276-4bf9-a2db-7f5c30d216ba
+      BaseUrl: "https://localhost:4000/"
+      GrantType: Code
+      RedirectUris:
+        - "https://localhost:4000/signin-oidc"
+      AllowedCorsOrigins:
+        - "https://localhost:5303" # api 3 - ordering_management
+        - "https://localhost:4000"
+      Scopes:
+        - ordering_management #this should match the audience scope in your boundary auth settings and swagger specs
